@@ -615,3 +615,17 @@
     .open-status.is-closed { background: #fbe7e5; color: #a3281f; }
     .b-msg { min-height: 18px; margin: -2px 0 8px; font-size: 13px; font-weight: 600; color: #a3281f; }
     .dish-pick.full .dc:not(.on) { opacity: .4; }
+
+/* ===== Carrinho: total e botão do WhatsApp sempre visíveis, no topo ===== */
+.cart-drawer { height: 100vh; height: 100dvh; }
+.cart-header { order: 0; flex-shrink: 0; }
+.cart-footer {
+  order: 1;
+  flex-shrink: 0;
+  border-top: none;
+  border-bottom: 1px solid var(--color-gray-200);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  padding: 12px 18px;
+}
+.cart-footer .cart-total { margin-bottom: 10px; }
+.cart-items { order: 2; flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 40px; }
