@@ -631,7 +631,7 @@
 .cart-items { order: 2; flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 40px; }
 
 /* ===== Carrinho aberto: só o carrinho rola, o site de trás fica parado ===== */
-html.no-scroll, body.no-scroll { overflow: hidden; overscroll-behavior: none; }
+body.no-scroll { position: fixed; left: 0; right: 0; width: 100%; overflow: hidden; }
 .cart-drawer { overscroll-behavior: contain; }
 .cart-items { overscroll-behavior: contain; }
 .cart-overlay { touch-action: none; }

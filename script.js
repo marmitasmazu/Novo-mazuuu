@@ -214,9 +214,24 @@ const WHATSAPP_PHONE = "5542998152403";
     function removeOrder(i) { orders.splice(i, 1); updateOrdersUI(); }
 
     const drawer = $('cartDrawer'), overlay = $('cartOverlay');
-    function openCart() { drawer.classList.add('open'); overlay.classList.add('open'); document.documentElement.classList.add('no-scroll'); document.body.classList.add('no-scroll'); }
-    function closeCart() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll'); }
-    $('openCartBtn').addEventListener('click', openCart);
+    let lockY = 0;
+    function lockPage() {
+      if (document.body.classList.contains('no-scroll')) return;
+      lockY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      document.body.style.top = (-lockY) + 'px';
+      document.body.classList.add('no-scroll');
+    }
+    function unlockPage() {
+      if (!document.body.classList.contains('no-scroll')) return;
+      document.body.classList.remove('no-scroll');
+      document.body.style.top = '';
+      window.scrollTo({ top: lockY, left: 0, behavior: 'instant' });
+    }
+    function openCart() { drawer.classList.add('open'); overlay.classList.add('open'); lockPage(); }
+    function closeCart() { drawer.classList.remove('open'); overlay.classList.remove('open'); unlockPage(); }
+    overlay.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+    drawer.addEventListener('touchmove', e => { if (!e.target.closest('.cart-items')) e.preventDefault(); }, { passive: false });
+        $('openCartBtn').addEventListener('click', openCart);
     $('closeCartBtn').addEventListener('click', closeCart);
     overlay.addEventListener('click', closeCart);
 
