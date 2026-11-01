@@ -629,3 +629,14 @@
 }
 .cart-footer .cart-total { margin-bottom: 10px; }
 .cart-items { order: 2; flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 40px; }
+
+/* ===== Carrinho aberto: só o carrinho rola, o site de trás fica parado ===== */
+html.no-scroll, body.no-scroll { overflow: hidden; overscroll-behavior: none; }
+.cart-drawer { overscroll-behavior: contain; }
+.cart-items { overscroll-behavior: contain; }
+.cart-overlay { touch-action: none; }
+
+/* ===== Seta de voltar no topo do carrinho ===== */
+.cart-header { justify-content: flex-start; gap: 14px; }
+.cart-header #closeCartBtn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.18); flex-shrink: 0; }
+.cart-header #closeCartBtn:active { background: rgba(255,255,255,.32); }
